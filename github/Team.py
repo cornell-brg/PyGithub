@@ -127,7 +127,9 @@ class Team(github.GithubObject.CompletableGithubObject):
         :param member: :class:`github.Nameduser.NamedUser`
         :rtype: None
         """
-        assert isinstance(member, github.NamedUser.NamedUser), member
+        # Moyang: We want to invite user join the org if that user is not in the organization
+        # so for now we just disable the assertion
+        # assert isinstance(member, github.NamedUser.NamedUser), member
         headers, data = self._requester.requestJsonAndCheck(
             "PUT",
             self.url + "/memberships/" + member._identity
